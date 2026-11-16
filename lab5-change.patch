@@ -1,0 +1,27 @@
+--- a/src/main/java/com/example/enrollment/domain/EnrollmentRepository.java
++++ b/src/main/java/com/example/enrollment/domain/EnrollmentRepository.java
+@@ -6,12 +6,20 @@
+ 
+ public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
+ 
+-    /** R4 중복 확인: 같은 사원·같은 과정에 이 상태의 신청이 있는가. */
+-    boolean existsByEmployeeIdAndCourseIdAndStatus(String employeeId, String courseId, EnrollmentStatus status);
++    /** 정리 작업: R4·R5에 쓰던 두 조회를 "사원의 신청 조회" 하나로 모았다. (성능·중복 정리) */
++    @Query("select e from Enrollment e where e.employeeId = :employeeId")
++    List<Enrollment> findAllOfEmployee(@org.springframework.data.repository.query.Param("employeeId") String employeeId);
+ 
+-    /** R5 개인 한도: 사원의 보유 신청 수(과정 무관). */
+-    long countByEmployeeIdAndStatus(String employeeId, EnrollmentStatus status);
++    /** R4 중복 확인: 모은 조회를 재사용한다. */
++    default boolean existsByEmployeeIdAndCourseIdAndStatus(String employeeId, String courseId, EnrollmentStatus status) {
++        return findAllOfEmployee(employeeId).stream().anyMatch(e -> e.getCourseId().equals(courseId));
++    }
+ 
++    /** R5 개인 한도: 모은 조회를 재사용한다. */
++    default long countByEmployeeIdAndStatus(String employeeId, EnrollmentStatus status) {
++        return findAllOfEmployee(employeeId).size();
++    }
++
+     /** R6 정원: 과정의 신청 인원. */
+     long countByCourseIdAndStatus(String courseId, EnrollmentStatus status);
+ 

@@ -1,0 +1,22 @@
+# 로컬 도구(JDK·Maven·브라우저 내려받기)
+.tools/
+
+# 빌드 결과
+target/
+frontend/dist/
+frontend/node_modules/
+
+# 테스트·검증 산출물
+frontend/test-results/
+frontend/playwright-report/
+frontend/blob-report/
+*.log
+
+# 개인 설정·IDE
+.idea/
+.vscode/
+*.iml
+.DS_Store
+.env
+.env.*
+*.local
