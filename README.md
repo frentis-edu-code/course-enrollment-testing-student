@@ -6,6 +6,10 @@
 
 > 인증·권한이 없는 교육용 예제입니다. 실제 업무 데이터나 서비스를 연결하지 마세요. 사원번호 E1001 등은 예제 값이며 외부 API 키는 사용하지 않습니다.
 
+## 앱 전체 소개 먼저 읽기
+
+[앱 이해와 설계 구조 안내](docs/design-guide.md)에서 실제 실행 화면 → 실행 방법 → 전체 요구사항 → 화면·API·서비스·규칙·DB → 테스트 위치를 읽습니다. 이 안내는 현재 소스를 대조해 새로 작성했으며 원래의 사전 설계서가 아닙니다. 전체 판단 기준은 [요구와 합의 규칙](docs/requirements.md) 1~9절입니다.
+
 ## 전체 자료 받기
 
 학생 저장소: https://github.com/frentis-edu-code/course-enrollment-testing-student
@@ -63,6 +67,7 @@ java -jar target\course-enrollment-testing-0.1.0.jar
 | --- | --- |
 | [docs/requirements-memo.md](docs/requirements-memo.md) | 다듬기 전 업무 메모 |
 | [docs/requirements.md](docs/requirements.md) | 합의 규칙·API 계약·인수조건. 예상값의 근거 |
+| [docs/design-guide.md](docs/design-guide.md) | 실제 실행 화면·전체 요구 지도·현재 소스의 설계 구조·실행·테스트 위치 |
 | `src/main/java/com/example/enrollment/web/` | HTTP 요청·응답 |
 | `src/main/java/com/example/enrollment/service/` | 신청·취소 처리 |
 | `src/main/java/com/example/enrollment/rules/` | EnrollmentRules·입력 자료형 EnrollmentCheck |
@@ -77,7 +82,7 @@ java -jar target\course-enrollment-testing-0.1.0.jar
 
 | 단원 | 읽을 실제 파일 | AI에 요청할 일 | 결과에서 확인할 것 |
 | --- | --- | --- | --- |
-| 1. 테스트 기본 개념과 AI 활용 | 앱 화면, `docs/requirements.md` | 신청·취소의 확인 지점과 근거 | 한 항목의 근거와 먼저 볼 이유. 정상 신청·취소의 상태·잔여석 |
+| 1. 테스트 기본 개념과 AI 활용 | 실제 화면과 `docs/design-guide.md`, 다듬기 전 메모와 합의 규칙 | 신청·취소의 확인 지점과 근거 | 한 항목의 근거와 먼저 볼 이유. 정상 신청·취소의 상태·잔여석 |
 | 2. AI 테스트케이스 설계 | 요구 Q1·R3·7절 C-101·AC1-4 | 마감 정각과 1초 뒤의 케이스 표 | 예상 응답·데이터 변화가 규칙과 맞는가. 따라 하기는 Q4·C3·AC2-1의 취소 기한 |
 | 3. 단위 테스트와 TDD | `EnrollmentRules.java`, `EnrollmentCheck.java`, `practice/RulesPracticeTest.java` | 정원 19·20명의 JUnit 테스트, 이어 취소 기한 새 연습 기능의 실패 테스트 | Spring·DB 없는 검사, R6 예상값과 실제 실행. TDD 빨강→초록→정리 후 재통과 |
 | 4. API·통합·React 화면 테스트 | `support/ApiTestSupport.java`, `support/TestData.java`, `practice/ApiPracticeTest.java`, `frontend/e2e/practice-flow.spec.js` | 취소한 좌석의 다른 사원 접수 API 검사, 신청·취소 화면 E2E | API 응답·인원·잔여석. 화면 확인 창·목록 대기·안내·상태 |
