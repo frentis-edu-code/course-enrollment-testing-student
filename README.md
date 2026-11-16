@@ -6,7 +6,7 @@
 
 > 인증·권한이 없는 교육용 예제입니다. 실제 업무 데이터나 서비스를 연결하지 마세요. 사원번호 E1001 등은 예제 값이며 외부 API 키는 사용하지 않습니다.
 
-## 앱 전체 소개 먼저 읽기
+## 먼저 앱 전체 소개 읽기
 
 [앱 이해와 설계 구조 안내](docs/design-guide.md)에서 실제 실행 화면 → 실행 방법 → 전체 요구사항 → 화면·API·서비스·규칙·DB → 테스트 위치를 읽습니다. 이 안내는 현재 소스를 대조해 새로 작성했으며 원래의 사전 설계서가 아닙니다. 전체 판단 기준은 [요구와 합의 규칙](docs/requirements.md)입니다. 메모의 질문과 합의, 신청·취소 규칙, API 계약, 화면, 기준 데이터, 추가 결정, 유저스토리와 인수조건이 한 문서에 있습니다.
 
@@ -26,7 +26,7 @@ Git 없이 받으려면 **Code → Download ZIP**을 누르고 압축을 풉니�
 - JDK **21**: `java -version`으로 확인하고 JAVA_HOME 또는 PATH를 설정합니다.
 - Node.js **22.12.0 이상**: npm으로 React 빌드와 화면 테스트를 준비합니다.
 - Maven은 포함된 Wrapper(`mvnw` / `mvnw.cmd`)를 씁니다. 처음에는 Maven/npm 의존성을 받으므로 인터넷이 필요합니다.
-- 화면 E2E에는 Playwright용 Chromium, 단원 5 패치에는 `patch` 도구가 필요합니다. 실습 중 준비가 없으면 임의 설치·설정 변경 대신 수업 담당자에게 알립니다.
+- 화면 E2E에는 Playwright용 Chromium, 단원 5 패치에는 `patch` 도구가 필요합니다. 실습 중 필요한 도구가 준비되어 있지 않으면 임의 설치·설정 변경 대신 수업 담당자에게 알립니다.
 
 **macOS / Linux — 프로젝트 루트에서:**
 
@@ -91,7 +91,7 @@ java -jar target\course-enrollment-testing-0.1.0.jar
 | 4. API·통합·React 화면 테스트 | 요구 문서의 취소 규칙·화면 설명, `support/ApiTestSupport.java`, `support/TestData.java`, `frontend/e2e/helpers.js` | 취소한 좌석의 다른 사원 접수 API 테스트, 신청·취소 화면 E2E | practice의 `EnrollmentApiTest.java`, `frontend/e2e/enrollment-flow.spec.js` | API 응답·인원·잔여석. 화면 확인 창·목록 대기·안내·상태 |
 | 5. 회귀와 결과 정리 | `lab5-change.patch`, 요구 문서의 중복 신청·개인 한도 규칙과 재신청, 지금 있는 테스트와 실제 실행 기록 | 먼저 영향 분석만. 범위 확인 후 재검증과 근거표·보고 | 새 파일 대신 단원 4의 API 테스트에 재신청 테스트 보강 | 변경 전 기준선→패치 뒤→수정 뒤 결과. 미실행과 남은 위험 |
 
-`practice`와 `support`는 `src/test/java/com/example/enrollment/` 아래입니다. 만들 파일 이름은 예시이며, AI가 다른 이름으로 만들었으면 실제 이름으로 읽습니다. 복사 요청은 [AI 요청문](docs/AI-요청문.md), 안전 조건·누적 파일 지도·복구는 [진행 안내](docs/실습-진행-안내.md)를 따릅니다.
+`practice`와 `support`는 `src/test/java/com/example/enrollment/` 아래입니다. 만들 파일 이름은 예시이며, AI가 다른 이름으로 만들었으면 생성된 파일 이름을 기준으로 확인합니다. 복사 요청은 [AI 요청문](docs/AI-요청문.md), 안전 조건·누적 파일 지도·복구는 [진행 안내](docs/실습-진행-안내.md)를 따릅니다.
 
 ## 테스트 실행과 결과 읽기
 
